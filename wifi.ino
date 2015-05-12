@@ -13,13 +13,13 @@ void initWifi() {
     sprintf(scroll.text, "Connecting to %s...", WIFI_SSID);
 
     while (WiFi.status() != WL_CONNECTED) {
-    	if (!scrolling)
-    		initScroll();
+    	if (!scroll.scrolling)
+    		startScroll();
 
         delay(500);
     }
 
     // Connected, force stop the scroll animation
-    if (scrolling)
+    if (scroll.scrolling)
     	stopScroll();
 }

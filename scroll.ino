@@ -9,7 +9,11 @@
 // the maximum value of scrollStep is strlen(dateStr)*5 + 24 (+24 let the scroll effect exit to the left)
 
 void initScroll() {
-    scrolling = true;
+    scroll.scrolling = false;
+}
+
+void startScroll() {
+    scroll.scrolling = true;
 
     scroll.text_len = strlen(scroll.text);
 
@@ -33,7 +37,7 @@ void updateScroll() {
 
 void stopScroll() {
     scroll_timer.detach();
-    scrolling = false;
+    scroll.scrolling = false;
 }
 
 // #############################################################################

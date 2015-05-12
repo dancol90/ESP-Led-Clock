@@ -16,6 +16,8 @@ struct scrollData {
 
     uint8_t      position;
     uint8_t      column_left;
+
+    bool         scrolling;
 } scroll;
 
 struct {

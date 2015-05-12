@@ -26,13 +26,14 @@ Ticker clock_timer;
 Ticker date_timer;
 Ticker scroll_timer;
 
-bool scrolling, do_no_update;
+bool do_no_update;
 
 
 // #############################################################################
 
 void setup() { 
     initLeds();
+    initScroll();
     initWifi();
     initTime();
     
@@ -51,7 +52,7 @@ void loop() {}
 void clockCallback() {
     do_no_update = true;
 
-    if (!scrolling) {
+    if (!scroll.scrolling) {
         drawClock();
         updateDisplay();
     }
@@ -62,9 +63,9 @@ void clockCallback() {
 void dateCallback() {
     do_no_update = true;
 
-    if (!scrolling) {
+    if (!scroll.scrolling) {
         writeDate(scroll.text);
-        initScroll();
+        startScroll();
     }
 
     do_no_update = false;
