@@ -32,21 +32,25 @@ bool do_no_update;
 // #############################################################################
 
 void setup() { 
+    do_no_update = false;
+
     initLeds();
     initScroll();
-    initWifi();
-    initTime();
     
-    rtc_timer.attach_ms(10, updateTime);
-    clock_timer.attach_ms(CLOCK_TIMEOUT, clockCallback);
-    date_timer.attach(DATE_TIMEOUT,   dateCallback);
-
-    do_no_update = false;
+    if (initWifi()) {
+        initTime();
+        
+        rtc_timer.attach_ms(10, updateTime);
+        clock_timer.attach_ms(CLOCK_TIMEOUT, clockCallback);
+        date_timer.attach(DATE_TIMEOUT,   dateCallback);
+    }   
+    
+    initServer();
 }
 
 // Everything is updated in timers, no need to loop
 void loop() {
-    updateWifi();
+    updateServer();
 }
 
 // #############################################################################
