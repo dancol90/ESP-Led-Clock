@@ -12,7 +12,7 @@
 #include <LedControl.h>
 
 #include <ESP8266WiFi.h>
-#include <WiFiUdp.h>
+#include <ESP8266WebServer.h>
 
 #include "fonts.h"
 #include "strings.h"
@@ -45,7 +45,9 @@ void setup() {
 }
 
 // Everything is updated in timers, no need to loop
-void loop() {}
+void loop() {
+    updateWifi();
+}
 
 // #############################################################################
 
