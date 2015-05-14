@@ -7,23 +7,28 @@
 ############################################################################################*/
 
 bool initWifi() {
-    byte status;
+    byte status = 0;
+    char msg[40];
 
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(WIFI_SSID, WIFI_KEY);
-    
-    // Set scroll message
-    strcpy(scroll.text, "CONNECTING");
+    // Don't even try to connect if no config is provided.
+    if (strlen(config.wifi_ssid) != 0) {
+        // Station mode, connect to AP.
+        WiFi.mode(WIFI_STA);
+        WiFi.begin(config.wifi_ssid, config.wifi_key);
+        
+        // Set scroll message
+        strcpy(scroll.text, "CONNECTING");
 
-    do {
-        status = WiFi.status();
+        do {
+            status = WiFi.status();
 
-        // Reshow the message if WiFi isn't connected yet.
-        if (!scroll.scrolling)
-            startScroll();
+            // Reshow the message if WiFi isn't connected yet.
+            if (!scroll.scrolling)
+                startScroll();
 
-        delay(200);
-    } while (status != WL_CONNECTED && status != WL_CONNECT_FAILED);
+            delay(200);
+        } while (status != WL_CONNECTED && status != WL_CONNECT_FAILED);
+    }
 
     // At this point the connection can be established or there can be errors
     if (status == WL_CONNECTED) {
@@ -49,6 +54,6 @@ bool initWifi() {
         startScroll();
 
         return false;
-
+    
     }
 }

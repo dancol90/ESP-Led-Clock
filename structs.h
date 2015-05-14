@@ -33,3 +33,21 @@ struct {
 
     bool leap;
 } time;
+
+struct _config_s {
+    int programmed;
+
+    // Time in milliseconds between a screen refresh and the next one.
+    int clock_timeout;
+    // Time in seconds to wait before seeing the date scroll
+    int date_timeout;
+
+    // Scroll animation step duration
+    uint8_t scroll_speed;
+    uint8_t timezone;
+
+    char ntp_server_host[40];
+
+    char wifi_ssid[40];
+    char wifi_key[40];
+} config;

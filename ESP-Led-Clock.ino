@@ -36,6 +36,8 @@ void setup() {
 
     initLeds();
     initScroll();
+
+    initConfig();
     
     if (initWifi()) {
         initTime();
