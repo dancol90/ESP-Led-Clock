@@ -34,6 +34,8 @@ struct {
     bool leap;
 } time;
 
+#define STRING_LENGTH 50
+
 struct _config_s {
     int programmed;
 
@@ -46,8 +48,8 @@ struct _config_s {
     uint8_t scroll_speed;
     uint8_t timezone;
 
-    char ntp_server_host[40];
+    char ntp_server_host[STRING_LENGTH];
 
-    char wifi_ssid[40];
-    char wifi_key[40];
+    char wifi_ssid[STRING_LENGTH];
+    char wifi_key[STRING_LENGTH];
 } config;
